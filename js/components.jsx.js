@@ -80,16 +80,13 @@
             TodoActions.toggleAllItems(evt.target.checked);
         },
         render: function() {
-            var filteredList;
+            var filteredList = _.sortBy(this.props.list, "key").reverse();
             switch(this.props.showing){
-                case 'all':
-                    filteredList = this.props.list;
-                    break;
                 case 'completed':
-                    filteredList = _.filter(this.props.list,function(item){ return item.isComplete; });
+                    filteredList = _.filter(filteredList, function(item){ return item.isComplete; });
                     break;
                 case 'active':
-                    filteredList = _.filter(this.props.list,function(item){ return !item.isComplete; });
+                    filteredList = _.filter(filteredList, function(item){ return !item.isComplete; });
             }
             var classes = React.addons.classSet({
                 "hidden": this.props.list.length < 1

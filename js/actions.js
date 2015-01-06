@@ -11,7 +11,13 @@
         "addItem",        // called by hitting enter in field in TodoHeader
         "removeItem",     // called by button in TodoItem
         "clearCompleted", // called by button in TodoFooter
-        "editItem"        // called by finishing edit in TodoItem
+        "editItem",       // called by finishing edit in TodoItem
+        "afterRemoveItems",
+        "undoItems"
+    ]);
+
+    global.UndoActions = Reflux.createActions([
+        "undoLastItems"     // called by button in Undo Component
     ]);
 
 })(window.Reflux, window);

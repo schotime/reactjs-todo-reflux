@@ -31,9 +31,18 @@
             }].concat(this.list));
         },
         onRemoveItem: function(itemKey) {
+            var itemsRemoved = [];
             this.updateList(_.filter(this.list,function(item){
-                return item.key!==itemKey;
+                if (item.key === itemKey) {
+                    itemsRemoved.push(item);
+                    return false;
+                }
+                return true;
             }));
+            TodoActions.afterRemoveItems(itemsRemoved);
+        },
+        onUndoItems: function(items) {
+            this.updateList(this.list.concat(items));
         },
         onToggleItem: function(itemKey) {
             var foundItem = getItemByKey(this.list,itemKey);
@@ -49,9 +58,15 @@
             }));
         },
         onClearCompleted: function() {
+            var itemsRemoved = [];
             this.updateList(_.filter(this.list, function(item) {
-                return !item.isComplete;
+                if (item.isComplete) {
+                    itemsRemoved.push(item);
+                    return false;
+                }
+                return true;
             }));
+            TodoActions.afterRemoveItems(itemsRemoved);
         },
         // called whenever we change a list. normally this would mean a database API call
         updateList: function(list){
