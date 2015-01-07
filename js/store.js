@@ -30,6 +30,19 @@
                 label: label
             }].concat(this.list));
         },
+        onAddMany: function(manyLabels) {
+            var list = manyLabels.split('\n').filter(function(label) {
+                return label.trim().length > 0;
+            }).map(function(label) {
+                return {
+                    key: todoCounter++,
+                    created: new Date(),
+                    isComplete: false,
+                    label: label
+                };
+            });
+            this.updateList(list.concat(this.list));
+        },
         onRemoveItem: function(itemKey) {
             this.updateList(_.filter(this.list,function(item){
                 return item.key!==itemKey;

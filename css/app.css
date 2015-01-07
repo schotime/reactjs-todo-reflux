@@ -8,3 +8,12 @@
 #addmany > a {
     color: rgb(61, 181, 144);
 }
+
+#addmanytext {
+    text-align: right;
+}
+
+#addmanytext > textarea {
+    width: 100%;
+    height: 80px;
+}

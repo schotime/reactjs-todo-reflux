@@ -1,5 +1,3 @@
-/** @jsx React.DOM */
-
 (function(React, ReactRouter, Reflux, TodoActions, todoListStore, global) {
 
     // Renders a single Todo item in the list
